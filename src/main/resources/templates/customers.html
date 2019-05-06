@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Customers</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+	<div class="container">
+		<div class="col-md-4">
+			<h1>Asiakkaat</h1>
+		</div>
+		<div class="col-md-4">
+			<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+		</div>
+		
+		<table class="table table-striped">
+			<thead>
+				<th>Ravintola</th>
+				<th>Yritys</th>
+				<th>Y-tunnus</th>
+				<th>Puhelin</th>
+				<th>Sähköposti</th>
+				<th>Kotisivut</th>
+				<th></th>
+			</thead>
+			<tbody>
+				<tr th:each="customer : ${customers}">
+					<td th:text="${customer.restaurant}"></td>
+					<td th:text="${customer.company}"></td>
+					<td th:text="${customer.vatNumber}"></td>
+					<td th:text="${customer.phone}"></td>
+					<td th:text="${customer.email}"></td>
+					<td th:text="${customer.url}"></td>
+					<td>
+					<a th:href="@{/customer/{customerId}(customerId=${customer.customerId})}" class="btn btn-success">Info</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<a href="/add" class="btn btn-success">Lisää asiakas</a>
+		</div>
+</body>
+</html>
