@@ -1,23 +1,50 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Customer</title>
+<title>Edit Customer</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
-	th:href="@{css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" href="~/css/bootstrap.min.css"
+	th:href="@{~/css/bootstrap.min.css}" />
 </head>
 <body>
-
-	<div class="container">
-		<div class="col-md-4">
-			<h1>Asiakkaat</h1>
-		</div>
-		<div class="col-md-4">
-			<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
-		</div>
+	<table th:object="${customer}" class="table table-striped">
+			<thead>
+				<th>Ravintola</th>
+				<th>Yritys</th>
+				<th>Y-tunnus</th>
+				<th>Puhelin</th>
+				<th>Sähköposti</th>
+				<th>Kotisivut</th>
+				<th></th>
+				<th></th>
+			</thead>
+			<tbody>
+					<td th:text="${customerId}" /></td>
+					<td th:text="${customer.restaurant}"></td>
+					<td th:text="${customer.company}"></td>
+					<td th:text="${customer.vatNumber}"></td>
+					<td th:text="${customer.phone}"></td>
+					<td th:text="${customer.email}"></td>
+					<td th:text="${customer.url}"></td>
+					<td>
+				
+				</tr>
+			</tbody>
+		</table>
 		
-	
+		<table th:object="${comments}" class="table table-striped">
+			<thead>
+				<th>Kommentit</th>
+				<
+			</thead>
+			<tbody>
+					<tr th:each="comment : ${comments}">
+			<td th:text="${comment.comment}"></td>
+				
+				</tr>
+			</tbody>
+		</table>
 		
-	
 </body>
 </html>
+

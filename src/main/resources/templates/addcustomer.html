@@ -8,55 +8,53 @@
 	th:href="@{css/bootstrap.min.css}" />
 	</head>
 	<body>
+	
 			<div class="container">
 		<div class="col-md-4">
 			<h1>Lisää asiakas</h1>
 		</div>
-		<div class="col-md-4">
-			<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
-		</div>
 		
 		
-		<div class="table table-striped">
-			<form th:object="${customer}" th:action="@{save}" action="#"
+			<form class="table table-striped" th:object="${customer}" th:action="@{save}" action="#"
 				method="post">
 				
-				<label for="restaurant">Ravintola</label> <input type="text" id="restaurant"
+				<label for="restaurant">Ravintola</label><br> <input type="text" id="restaurant"
 					th:field="*{restaurant}" />
-				<div class="table table-striped">
+				<div class="table table-striped"></div>
 				
-				<label for="company">Yritys</label> <input type="text" id="company"
+				<label for="company">Yritys</label><br> <input type="text" id="company"
 					th:field="*{company}" />
 				<div style="clear: both; display: block; height: 10px;"></div>
 				
-				<label for="vatNumber">Y-tunnus</label> <input type="text" id="vatNumber" 
+				<label for="vatNumber">Y-tunnus</label><br> <input type="text" id="vatNumber" 
 				th:field="*{vatNumber}" />
 				<div style="clear: both; display: block; height: 10px;"></div>
 				
-				<label for="phone">Puhelin</label> <input type="text" id="phone"
+				<label for="phone">Puhelin</label><br><input type="text" id="phone"
 					th:field="*{phone}" />
 				<div style="clear: both; display: block; height: 10px;"></div>
 				
-				<label for="email">Sähköposti</label> <input type="text" id="email"
+				<label for="email">Sähköposti</label><br> <input type="text" id="email"
 					th:field="*{email}" />
 				<div style="clear: both; display: block; height: 10px;"></div>
 				
-				<label for="url">Kotisivut</label> <input type="text" id="url"
+				<label for="url">Kotisivut</label><br> <input type="text" id="url"
 					th:field="*{url}" />
 				<div style="clear: both; display: block; height: 10px;"></div>
 				
-				<label for="address">Osoite</label> <input type="text" id="address"
+				<label for="address">Osoite</label><br> <input type="text" id="address"
 					th:field="*{address}" />
 				<div style="clear: both; display: block; height: 10px;"></div>
 				
-				<label for="postalcode">Postinumero</label> <input type="text" id="postalcode"
+				<label for="postalcode">Postinumero</label><br> <input type="text" id="postalcode"
 					th:field="*{postalcode}" />
 				<div style="clear: both; display: block; height: 10px;"></div>
 				
-				<label for="contactPerson">Yhteyshenkilö</label> <input type="text" id="contactPerson"
+				<label for="contactPerson">Yhteyshenkilö</label><br> <input type="text" id="contactPerson"
 					th:field="*{contactPerson}" />
 				<div style="clear: both; display: block; height: 10px;"></div>
 				 <input class="btn btn-success" type="submit" value="Save"></input>
+				<a	th:href="@{/customers}" class="btn btn-xs btn-primary">Etusivulle</a></td>
 			</form>
 		</div>
 	</body>

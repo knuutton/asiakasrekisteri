@@ -1,4 +1,4 @@
-/*package com.example.asiakasrekisteri.model;
+package com.example.asiakasrekisteri.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Comment {
@@ -20,7 +21,7 @@ public class Comment {
 	private String comment;
 	
 	@ManyToOne
-	@JsonBackReference
+	@JsonIgnore
 	@JoinColumn(name = "customerId")
 	private Customer customer;
 
@@ -66,4 +67,3 @@ public class Comment {
 	
 	
 }
-*/

@@ -1,10 +1,16 @@
 package com.example.asiakasrekisteri.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Customer {
@@ -24,13 +30,11 @@ public class Customer {
 	private String contactPerson;
 	private String postalcode;
 
-	/*
-	 * @OneToMany
-	 * 
-	 * @JsonManagedReference
-	 * 
-	 * @JoinColumn(name = "commentId") private List<Comment> comments;
-	 */
+	
+	  @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+	  @JsonIgnore
+	  private List<Comment> comments;
+	 
 
 	// konstruktorit
 	public Customer() {

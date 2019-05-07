@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Edit Customer</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="~/css/bootstrap.min.css"
+	th:href="@{~/css/bootstrap.min.css}" />
+</head>
+<body>
+	<div class="container">
+		<div class="col-md-4">
+	<h1>Muokkaa asiakasta</h1>
+	<div>
+		<table class="table table-striped" th:object="${customer}" th:action="@{../save}" action="#"
+			method="post">
+			<input type="hidden" th:field="${customerId}" class="form-control" /> <br>
+			<label
+				for="restaurant">Ravintola</label> <input type="text" id="restaurant"
+				th:field="*{restaurant}" />
+			
+			<label for="company">Yritys</label> <input type="text" id="company"
+				th:field="*{company}" />
+			
+			<label for="vatNumber">Y-tunnus</label> <input type="text" id="vatNumber"
+				th:field="*{vatNumber}" />
+			
+			<label for="phone">Puhelin</label> <input type="text" id="phone"
+				th:field="*{phone}" />
+			
+			<label for="email">Sähköposti</label> <input type="text" id="email"
+				th:field="*{email}" />
+			
+			<label for="url">Kotisivut</label> <input type="text" id="url"
+				th:field="*{url}" />
+			
+			<label for="address">Osoite</label> <input type="text" id="address"
+				th:field="*{address}" />
+			
+			<label for="postalcode">Postinumero</label> <input type="text" id="postalcode"
+				th:field="*{postalcode}" />
+			
+			<label for="contactPerson">Yhteyshenkilö</label> <input type="text" id="contactPerson"
+				th:field="*{contactPerson}" />
+			
+			</select> <input type="submit" class="btn btn-success" value="Save"></input>
+		</table>
+	</div>
+</body>
+</html>
