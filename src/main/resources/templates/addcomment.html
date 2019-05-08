@@ -32,10 +32,10 @@
 			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-4">
-						<h2 th:text="${customer.restaurant}"></h2>
+						<h2>Lisää kommentti</h2>
 					</div>
 					<div class="col-sm-8">
-						<a th:href="@{/customers}" class="btn btn-danger"><span>Kirjaudu ulos</span></a> 
+						<a th:href="@{/customers}" class="btn btn-danger"><<span>Kirjaudu ulos</span></a> 
 						<a th:href="@{/customers}" class="btn btn-info"> <span>Etusivulle</span></a>
 						<a th:href="@{/editcustomer/{customerId}(customerId=${customer.customerId})}" class="btn btn-info"> <span>Muokkaa</span></a>
 					</div>
@@ -70,21 +70,15 @@
 				</tbody>
 			</table>
 
-			
-			<a th:href="@{/addcomment}" class="btn btn-info"> <span>Lisää kommentti</span></a>
+
+			<h3>Kirjoita kommentti:</h3>
+			<form th:object="${comment}" th:action="@{/customer/{customerId}/addcomment}" action="#"
+				method="post">
+				
+				<textarea name="comment" cols="120" rows="5"></textarea>
+				<br> <input class="btn btn-primary" type="submit" value="Lisää" />
+			</form>
 
 
-			<table th:object="${comments}" class="table table-striped">
-				<thead>
-					<th>Kommentit</th>
-				</thead>
-				<tbody>
-					<tr th:each="comment : ${comments}">
-						<td th:text="${comment.comment}"></td>
-
-					</tr>
-				</tbody>
-			</table>
 </body>
 </html>
-
