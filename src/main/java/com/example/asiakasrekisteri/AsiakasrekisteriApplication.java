@@ -7,9 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.example.asiakasrekisteri.domain.CommentRepository;
 import com.example.asiakasrekisteri.domain.CustomerRepository;
-import com.example.asiakasrekisteri.model.Comment;
 import com.example.asiakasrekisteri.model.Customer;
 
 @SpringBootApplication
@@ -23,32 +21,23 @@ public class AsiakasrekisteriApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(CustomerRepository customerrepository, CommentRepository commentrepository) {
+	public CommandLineRunner demo(CustomerRepository customerrepository) {
 		return (args) -> {
-		
+
 			log.info("Save couple customers");
 			Customer customer1 = new Customer("Pihvimylläri2", "Pola Oy", "13245-7", "010123456", "info@pihvi.fi",
 					"www.pihvimylläri.fi", "katukuja 1", "Pola", "01800");
-					
+
 			Customer customer2 = new Customer("Pihvimylläri4", "Pola Oy", "13245-7", "010123456", "info@pihvi.fi",
 					"www.pihvimylläri.fi", "katukuja 1", "Pola", "01800");
-			
-			
+
 			customerrepository.save(customer1);
 			customerrepository.save(customer2);
 
-			log.info("sace couple comments");
-			
-			commentrepository.save(new Comment("Kokeilu", customer1));
-			commentrepository.save(new Comment("Testi", customer1));
-		
-			
 			log.info("fetch all customers");
 			for (Customer customers : customerrepository.findAll()) {
 				log.info(customers.toString());
 			}
-			
-		
 
 		};
 

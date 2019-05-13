@@ -1,16 +1,13 @@
 package com.example.asiakasrekisteri.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.example.asiakasrekisteri.domain.CommentRepository;
 import com.example.asiakasrekisteri.domain.CustomerRepository;
-import com.example.asiakasrekisteri.model.Comment;
 import com.example.asiakasrekisteri.model.Customer;
 
 @Controller
@@ -18,9 +15,6 @@ public class CustomerController {
 
 	@Autowired
 	private CustomerRepository customerrepository;
-	
-	@Autowired
-	private CommentRepository commentrepository;
 
 	// kaikki asiakkaat
 	@GetMapping("/customers")
@@ -49,37 +43,12 @@ public class CustomerController {
 		model.addAttribute("customer", customerrepository.findById(customerId));
 		return "editcustomer";
 	}
-	
-	@GetMapping("/delete/{customerId}")
-	public String deleteCustomer(@PathVariable("customerId") Long customerId, Model model) {
-		customerrepository.deleteById(customerId);
-		return "redirect:../customers";
-	}
 
-	//hae tietty asiakas ja asiakkaan kommentit
+	// hae tietty asiakas
 	@GetMapping("/customer/{customerId}")
 	public String customer(@PathVariable("customerId") Long customerId, Model model) {
 		model.addAttribute("customer", customerrepository.findById(customerId).orElse(null));
-		Customer customer = new Customer();
-		customer.setCustomerId(customerId);
-		model.addAttribute("comments", commentrepository.findByCustomer(customer));
 		return "customer";
 	}
-	
-	@GetMapping("/addcomment")
-	public String customerAddComment(@PathVariable("customerId") Long customerId, Model model) {
-		model.addAttribute("customer", customerrepository.findById(customerId).orElse(null));
-		Customer customer = new Customer();
-		customer.setCustomerId(customerId);
-		model.addAttribute("comment", new Comment());
-		return "addcomment";
-	}
-	
-	
-	@PostMapping("/savecomment")
-	public String savecomment(Comment comment) {
-		commentrepository.save(comment);
-		return "redirect:customer";
-	}
-	
+
 }
