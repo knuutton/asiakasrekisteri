@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.asiakasrekisteri.domain.CommentRepository;
 import com.example.asiakasrekisteri.domain.CustomerRepository;
 import com.example.asiakasrekisteri.model.Customer;
 
@@ -16,6 +17,9 @@ public class CustomerController {
 	@Autowired
 	private CustomerRepository customerrepository;
 
+	@Autowired
+	private CommentRepository commentrepository;
+	
 	// kaikki asiakkaat
 	@GetMapping("/customers")
 	public String customerlist(Model model) {
@@ -44,11 +48,14 @@ public class CustomerController {
 		return "editcustomer";
 	}
 
-	// hae tietty asiakas
-	@GetMapping("/customer/{customerId}")
-	public String customer(@PathVariable("customerId") Long customerId, Model model) {
-		model.addAttribute("customer", customerrepository.findById(customerId).orElse(null));
-		return "customer";
+	//hae tietty asiakas ja asiakkaan kommentit
+		@GetMapping("/customer/{customerId}")
+		public String customer(@PathVariable("customerId") Long customerId, Model model) {
+			model.addAttribute("customer", customerrepository.findById(customerId).orElse(null));
+			Customer customer = new Customer();
+			customer.setCustomerId(customerId);
+			model.addAttribute("comments", commentrepository.findByCustomer(customer));
+			return "customer";
 	}
 
 }
