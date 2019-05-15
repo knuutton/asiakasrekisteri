@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Customers - Login</title>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link type="text/css" rel="stylesheet" href="~/css/styles.css"
+	th:href="@{~/css/styles.css}" />
+
+</head>
+
+<body>
+<div class="container">
+		<div class="table-wrapper">
+			<div class="table-title">
+				<div class="row">
+					<div class="col-sm-4">
+					<h2>Kirjaudu sisään</h2>
+					</div>
+					
+				</div>
+			</div>
+			      <div>
+        <div th:if="${param.error}">
+            Invalid username and password.
+        </div>
+        <div th:if="${param.logout}">
+            You have been logged out.
+        </div>
+        
+        <form th:action="@{/login}" method="post">
+            <div>
+            	<label> User Name : <input type="text" name="username" class="form-control"/> </label>
+            </div>
+            <div>
+           	 	<label > Password: <input type="password" name="password" class="form-control"/> </label>
+            </div>
+            <div>
+            <input type="submit" value="Login" class=" btn btn-info"/>
+           	</div>
+           	
+        </form>
+        </div>
+        
+</div>
+</body>
+</html>

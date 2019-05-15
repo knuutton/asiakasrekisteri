@@ -11,4 +11,5 @@ public interface CommentRepository extends CrudRepository<Comment, Long> {
 
 	List<Comment> findById(long commentId);
 	List<Comment> findByCustomer(Customer customer);
+	List<Comment> findByComment(String comment);
 }

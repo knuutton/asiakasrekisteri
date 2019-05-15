@@ -1,78 +1,98 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Customers</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link type="text/css" rel="stylesheet" href="~/css/styles.css"
 	th:href="@{~/css/styles.css}" />
 
 </head>
 
 <body>
-    <div class="container">
-        <div class="table-wrapper">
-            <div class="table-title">
-                <div class="row">
-                    <div class="col-sm-4">
+	<div class="container">
+		<div class="table-wrapper">
+			<div class="table-title">
+				<div class="row">
+					<div class="col-sm-4">
 						<h2>Asiakkaat</h2>
 					</div>
 					<div class="col-sm-8">
-						<a th:href="@{/customers}" class="btn btn-danger"> <span>Kirjaudu ulos</span></a>						
+						
+							<a href="/login" sec:authorize="!isAuthenticated()"> <input
+								type="submit" value="Login" class="btn btn-info" />
+							</a>
+							<form th:action="@{/logout}" method="post"
+								sec:authorize="isAuthenticated()">
+								<input type="submit" value="Logout" class="btn btn-info" />
+							</form>
+						
 						<a th:href="@{/customers}" class="btn btn-info"> <span>Etusivulle</span></a>
+						<h3 th:inline="text">
+							<span sec:authorize="isAuthenticated()">Welcome</span>&nbsp;[[${#httpServletRequest.remoteUser}]]
+						</h3>
 					</div>
-                </div>
-            </div>
+				</div>
+			</div>
 			<div class="table-filter">
 				<div class="row">
-                    <div class="col-sm-3">
+					<div class="col-sm-3">
 						<div class="show-entries">
-						<a href="/add" class="btn btn-primary"><span>Lisää asiakas</span></a>
+							<a href="/add" class="btn btn-primary"><span>Lisää
+									asiakas</span></a>
 						</div>
 					</div>
-                    <div class="col-sm-9">
-						<button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+					<div class="col-sm-9">
+						<button type="button" class="btn btn-primary">
+							<i class="fa fa-search"></i>
+						</button>
 						<div class="filter-group">
-							<label>Name</label>
-							<input type="text" class="form-control">
+							<label>Name</label> <input type="text" class="form-control">
 						</div>
-						
-						
+
+
 						<span class="filter-icon"><i class="fa fa-filter"></i></span>
-                    </div>
-                </div>
+					</div>
+				</div>
 			</div>
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>Ravintola</th>
-                        <th>Kaupunki</th>
-						<th>Puhelin</th>						
-                        <th>Sähköposti</th>						
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>Ravintola</th>
+						<th>Kaupunki</th>
+						<th>Puhelin</th>
+						<th>Sähköposti</th>
 						<th>Kotisivut</th>
 						<th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="customer : ${customers}">
-                  <td th:text="${customer.restaurant}"></td>
-					<td th:text="${customer.city}"></td>
-					<td th:text="${customer.phone}"></td>
-					<td th:text="${customer.email}"></td>
-					<td th:text="${customer.url}"></td>
-					<td><a th:href="@{/customer/{customerId}(customerId=${customer.customerId})}" class="btn btn-primary">Info</a></td>
-                    </tr>
-					
-                </tbody>
-            </table>
-			
-        </div>
-    </div>     
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="customer : ${customers}">
+						<td th:text="${customer.restaurant}"></td>
+						<td th:text="${customer.city}"></td>
+						<td th:text="${customer.phone}"></td>
+						<td th:text="${customer.email}"></td>
+						<td th:text="${customer.url}"></td>
+						<td><a
+							th:href="@{/customer/{customerId}(customerId=${customer.customerId})}"
+							class="btn btn-primary">Info</a></td>
+					</tr>
+
+				</tbody>
+			</table>
+
+		</div>
+	</div>
 </body>
 </html>
 
