@@ -28,10 +28,10 @@ public class AsiakasrekisteriApplication {
 
 			log.info("Save couple customers");
 			Customer customer1 = new Customer("Pihvimylläri2", "Pola Oy", "13245-7", "010123456", "info@pihvi.fi",
-					"www.pihvimylläri.fi", "katukuja 1", "Pola", "01800");
+					"www.pihvimylläri.fi", "katukuja 1", "Pola", "01800","Klaukkala");
 
 			Customer customer2 = new Customer("Pihvimylläri4", "Pola Oy", "13245-7", "010123456", "info@pihvi.fi",
-					"www.pihvimylläri.fi", "katukuja 1", "Pola", "01800");
+					"www.pihvimylläri.fi", "katukuja 1", "Pola", "01800", "Kerava");
 
 			customerrepository.save(customer1);
 			customerrepository.save(customer2);

@@ -51,8 +51,7 @@
                 <thead>
                     <tr>
                         <th>Ravintola</th>
-                        <th>Yritys</th>
-						<th>Y-tunnus</th>
+                        <th>Kaupunki</th>
 						<th>Puhelin</th>						
                         <th>Sähköposti</th>						
 						<th>Kotisivut</th>
@@ -62,8 +61,7 @@
                 <tbody>
                     <tr th:each="customer : ${customers}">
                   <td th:text="${customer.restaurant}"></td>
-					<td th:text="${customer.company}"></td>
-					<td th:text="${customer.vatNumber}"></td>
+					<td th:text="${customer.city}"></td>
 					<td th:text="${customer.phone}"></td>
 					<td th:text="${customer.email}"></td>
 					<td th:text="${customer.url}"></td>

@@ -29,6 +29,7 @@ public class Customer {
 	private String address;
 	private String contactPerson;
 	private String postalcode;
+	private String city;
 
 	@OneToMany
 	@JsonManagedReference
@@ -42,7 +43,7 @@ public class Customer {
 	}
 
 	public Customer(String restaurant, String company, String vatNumber, String phone, String email, String url,
-			String address, String contactPerson, String postalcode) {
+			String address, String contactPerson, String postalcode, String city) {
 		super();
 		this.restaurant = restaurant;
 		this.company = company;
@@ -53,6 +54,7 @@ public class Customer {
 		this.address = address;
 		this.contactPerson = contactPerson;
 		this.postalcode = postalcode;
+		this.city = city;
 	}
 
 	// getterit ja setterit
@@ -136,11 +138,39 @@ public class Customer {
 		this.postalcode = postalcode;
 	}
 
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	/*public List<Comment> getComments() {
+	return comments;
+}
+
+public void setComments(List<Comment> comments) {
+	this.comments = comments;
+}*/
+	
 	@Override
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", restaurant=" + restaurant + ", company=" + company
 				+ ", vatNumber=" + vatNumber + ", phone=" + phone + ", email=" + email + ", url=" + url + ", address="
-				+ address + ", contactPerson=" + contactPerson + ", postalcode=" + postalcode + "]";
+				+ address + ", contactPerson=" + contactPerson + ", postalcode=" + postalcode + ", city=" + city + "]";
 	}
+
+	/*public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}*/
+
+	
+
+
 
 }
