@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.asiakasrekisteri.domain.CommentRepository;
 import com.example.asiakasrekisteri.domain.CustomerRepository;
+import com.example.asiakasrekisteri.model.Comment;
 import com.example.asiakasrekisteri.model.Customer;
 
 @Controller
@@ -56,6 +57,24 @@ public class CustomerController {
 			customer.setCustomerId(customerId);
 			model.addAttribute("comments", commentrepository.findByCustomer(customer));
 			return "customer";
+	}
+		
+		@GetMapping("/customer/{customerId}/addcomment")
+		public String customerAddComment(@PathVariable("customerId") Long customerId, Model model) {
+			model.addAttribute("customer", customerrepository.findById(customerId).orElse(null));
+			Customer customer = new Customer();
+			customer.setCustomerId(customerId);
+			Comment comment = new Comment();
+			comment.setCustomer(customer);
+			model.addAttribute("comment", comment);
+			return "addcomment";
+		}
+	
+		
+		@PostMapping("/savecomment")
+		public String savecomment(Comment comment) {
+			commentrepository.save(comment);
+			return "redirect:customer";
 	}
 
 }

@@ -146,13 +146,13 @@ public class Customer {
 		this.city = city;
 	}
 
-	/*public List<Comment> getComments() {
+	public List<Comment> getComments() {
 	return comments;
 }
 
 public void setComments(List<Comment> comments) {
 	this.comments = comments;
-}*/
+}
 	
 	@Override
 	public String toString() {
@@ -161,16 +161,6 @@ public void setComments(List<Comment> comments) {
 				+ address + ", contactPerson=" + contactPerson + ", postalcode=" + postalcode + ", city=" + city + "]";
 	}
 
-	/*public List<Comment> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
-	}*/
-
 	
-
-
 
 }

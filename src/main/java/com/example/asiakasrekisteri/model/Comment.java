@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Entity
 public class Comment {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="commentId", nullable = false, updatable = false)
 	private long commentId;
 	private String comment;
