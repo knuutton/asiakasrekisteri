@@ -27,7 +27,12 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 						<h2 th:text="${customer.restaurant}"></h2>
 					</div>
 					<div class="col-sm-8">
-						<a th:href="@{/customers}" class="btn btn-danger"><span>Kirjaudu ulos</span></a> 
+							<form th:action="@{/logout}" method="post"
+								sec:authorize="isAuthenticated()">
+								<input type="submit" value="Kirjaudu ulos" class="btn btn-info" />
+							</form>
+							
+						
 						<a th:href="@{/customers}" class="btn btn-info"> <span>Etusivulle</span></a>
 						<a th:href="@{/editcustomer/{customerId}(customerId=${customer.customerId})}" class="btn btn-info"> <span>Muokkaa asiakasta</span></a>
 						<h3 th:inline="text"><span sec:authorize="isAuthenticated()">Welcome</span>&nbsp;[[${#httpServletRequest.remoteUser}]]</h3>
