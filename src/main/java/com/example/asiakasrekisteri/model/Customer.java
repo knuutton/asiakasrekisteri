@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 public class Customer {
 
-	// atribuutit
+	// attributes
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "customerId", nullable = false, updatable = false)
@@ -36,7 +36,7 @@ public class Customer {
 	@JoinColumn(name = "commentId")
 	private List<Comment> comments;
 
-	// konstruktorit
+	// constructors
 	public Customer() {
 		super();
 
@@ -57,7 +57,7 @@ public class Customer {
 		this.city = city;
 	}
 
-	// getterit ja setterit
+	// getters and setters
 	public long getCustomerId() {
 		return customerId;
 	}
@@ -154,6 +154,7 @@ public void setComments(List<Comment> comments) {
 	this.comments = comments;
 }
 	
+	//toString
 	@Override
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", restaurant=" + restaurant + ", company=" + company

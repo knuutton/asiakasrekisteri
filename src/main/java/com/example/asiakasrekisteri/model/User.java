@@ -9,6 +9,7 @@ import javax.persistence.Id;
 @Entity
 public class User {
 
+	//attributes
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false, updatable = false)
@@ -27,6 +28,7 @@ public class User {
 	@Column(name = "role", nullable = false)
 	private String role;
 
+	//constructors
 	public User() {
 	}
 
@@ -38,6 +40,7 @@ public class User {
 		this.role = role;
 	}
 
+	//getters and setters
 	public Long getId() {
 		return id;
 	}

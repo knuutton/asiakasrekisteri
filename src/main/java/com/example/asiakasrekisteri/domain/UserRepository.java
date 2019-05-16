@@ -8,6 +8,5 @@ import com.example.asiakasrekisteri.model.User;
 public interface UserRepository extends CrudRepository<User, Long> {
 	
 	User findByUsername(String username);
-	User findByEmail(String email);
 	
 }

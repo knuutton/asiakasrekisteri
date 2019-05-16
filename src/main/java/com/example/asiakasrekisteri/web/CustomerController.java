@@ -24,8 +24,7 @@ public class CustomerController {
 
 	@Autowired
 	private CommentRepository commentrepository;
-	
-	
+
 	@GetMapping("/login")
 	public String login() {
 		return "login";
@@ -50,12 +49,12 @@ public class CustomerController {
 		model.addAttribute("customer", new Customer());
 		return "addcustomer";
 	}
-	
-	 // RESTful service to save new customer 
+
+	// RESTful service to save new customer
 	@PostMapping("/savecustomer")
-    public @ResponseBody Customer addCustomerRest(@RequestBody Customer customer) {	
-    	return customerrepository.save(customer);
-}
+	public @ResponseBody Customer addCustomerRest(@RequestBody Customer customer) {
+		return customerrepository.save(customer);
+	}
 
 	// Save customer
 	@PostMapping("/save")
@@ -70,10 +69,6 @@ public class CustomerController {
 		model.addAttribute("customer", customerrepository.findById(customerId));
 		return "editcustomer";
 	}
-	
-	//RESTful service to edit customer
-	
-	
 
 	// Get customer and comments
 	@GetMapping("/customer/{customerId}")
@@ -84,35 +79,24 @@ public class CustomerController {
 		model.addAttribute("comments", commentrepository.findByCustomer(customer));
 		return "customer";
 	}
-	
-	
 
-	//Add comment to customer
+	// Add comment to customer
 	@GetMapping("/customer/{customerId}/addcomment")
 	public String customerAddComment(@PathVariable("customerId") Long customerId, Model model) {
 		model.addAttribute("customer", customerrepository.findById(customerId).orElse(null));
+		Comment comment = new Comment();
 		Customer customer = new Customer();
 		customer.setCustomerId(customerId);
-		Comment comment = new Comment();
 		comment.setCustomer(customer);
 		model.addAttribute("comment", comment);
 		return "addcomment";
 	}
-	
-	 // RESTful service to save new comment 
-	@PostMapping("/commentsave")
-   public @ResponseBody Comment addCommentRest(@RequestBody Comment comment) {	
-   	
-		
-		return commentrepository.save(comment);
 
-	}
-	//Save comment
+	// Save comment
 	@PostMapping("/savecomment")
 	public String savecomment(Comment comment) {
 		commentrepository.save(comment);
-		return "redirect:customer";
+		return "redirect:customers";
 	}
 
-	
 }

@@ -7,8 +7,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+
+
 @Entity
 public class Comment {
+	
+	//attributes
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="commentId", nullable = false, updatable = false)
@@ -19,6 +23,8 @@ public class Comment {
 	@JsonBackReference
 	@JoinColumn(name = "customerId")
 	private Customer customer;
+	
+	//Constructors
 	public Comment() {
 		super();
 	}
@@ -27,6 +33,8 @@ public class Comment {
 		this.comment = comment;
 		this.customer = customer;
 	}
+	
+	//Getters and setters
 	public long getCommentId() {
 		return commentId;
 	}
@@ -45,6 +53,8 @@ public class Comment {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+	
+	//toString
 	@Override
 	public String toString() {
 		return "Comment [commentId=" + commentId + ", comment=" + comment + ", customer=" + customer + "]";
